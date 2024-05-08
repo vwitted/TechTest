@@ -1,5 +1,8 @@
+using System;
+using System.Globalization;
 using UserManagement.Models;
 using UserManagement.Services.Domain.Interfaces;
+using UserManagement.Services.Interfaces;
 using UserManagement.Web.Models.Users;
 using UserManagement.WebMS.Controllers;
 
@@ -7,6 +10,9 @@ namespace UserManagement.Data.Tests;
 
 public class UserControllerTests
 {
+
+
+
     [Fact]
     public void List_WhenServiceReturnsUsers_ModelMustContainUsers()
     {
@@ -23,8 +29,9 @@ public class UserControllerTests
             .Which.Items.Should().BeEquivalentTo(users);
     }
 
-    private User[] SetupUsers(string forename = "Johnny", string surname = "User", string email = "juser@example.com", bool isActive = true)
+    private User[] SetupUsers(string forename = "Johnny", string surname = "User", string email = "juser@example.com", DateTime? dateTime = null, bool isActive = true)
     {
+        dateTime = DateTime.ParseExact("12/01/1990","dd/MM/yyyy", CultureInfo.InvariantCulture);
         var users = new[]
         {
             new User
@@ -44,5 +51,6 @@ public class UserControllerTests
     }
 
     private readonly Mock<IUserService> _userService = new();
-    private UsersController CreateController() => new(_userService.Object);
+    private readonly Mock<IActionLogService> _actionLogService = new();
+    private UsersController CreateController() => new(_userService.Object, _actionLogService.Object);
 }

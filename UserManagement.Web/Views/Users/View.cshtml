@@ -1,0 +1,42 @@
+﻿@model UserManagement.Web.Models.Users.UserViewModel
+
+<h2>View User</h2>
+
+<div class="form-group">
+    <label asp-for="Forename"></label>
+    <input asp-for="Forename" class="form-control" readonly />
+</div>
+<div class="form-group">
+    <label asp-for="Surname"></label>
+    <input asp-for="Surname" class="form-control" readonly />
+</div>
+<div class="form-group">
+    <label asp-for="Email"></label>
+    <input asp-for="Email" class="form-control" readonly />
+</div>
+<div class="form-group">
+    <label asp-for="DateOfBirth"></label>
+    <input asp-for="DateOfBirth" class="form-control" readonly />
+</div>
+<br />
+<h5>Logs</h5>
+<table>
+    <thead> 
+        <tr>
+            <th>Action Type</th>
+            <th>Timestamp</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var log in ViewBag.UserActionLogs)
+        {
+            <tr>
+                <td>@log.Action</td>
+                <td>@log.Timestamp</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<!-- ... -->
+
+<a asp-controller="Users" asp-action="List" class="btn btn-default">Back to List</a>

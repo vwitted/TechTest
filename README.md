@@ -5,6 +5,11 @@ We recommend that you use [Visual Studio (Community Edition)](https://visualstud
 
 **The application uses an in-memory database, so changes will not be persisted between executions.**
 
+# Packages
+
+Additional NuGet Packages:
+- X.PagedList
+
 ## The Exercise
 Complete as many of the tasks below as you can. These are split into 3 levels of difficulty 
 * **Standard** - Functionality that is common when working as a web developer

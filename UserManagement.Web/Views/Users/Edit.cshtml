@@ -1,0 +1,81 @@
+﻿@model UserManagement.Web.Models.Users.UserEditViewModel
+<h2>Edit User</h2>
+
+
+<form class="edit-form" asp-controller="Users" asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label asp-for="Forename"></label>
+        <input asp-for="Forename" class="form-control track-changes" />
+        <span asp-validation-for="Forename" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Surname"></label>
+        <input asp-for="Surname" class="form-control track-changes" />
+        <span asp-validation-for="Surname" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control track-changes" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="DateOfBirth"></label>
+        <input asp-for="DateOfBirth" class="form-control track-changes" type="date" />
+        <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+    </div>
+    <div class="form-group form-check">
+        <input type="checkbox" asp-for="IsActive" class="form-check-input track-changes" />
+        <label asp-for="IsActive" class="form-check-label"></label>
+    </div>
+    <button onclick="confirmSaveChanges();" type="submit" class="btn btn-primary save-button">Save</button>
+    <a asp-controller="Users" asp-action="List" class="btn btn-default">Cancel</a>
+</form>
+
+@section Scripts {
+    <script type="text/javascript">
+
+        function confirmSaveChanges(){
+            return confirm('are you sure you want to save your changes?');
+        }
+
+        $(document).ready(function () {
+            var initialFormData = {};
+            $('.track-changes').each(function () {
+                var inputName = $(this).attr('name');
+                if ($(this).is(':checkbox')) {
+                    initialFormData[inputName] = $(this).prop('checked'); 
+                } else {
+                    initialFormData[inputName] = $(this).val();
+                }
+            });
+
+            $('.track-changes').on('change input', function () {
+                var currentFormData = {};
+
+                $('.track-changes').each(function () {
+                    var inputName = $(this).attr('name');
+                    if ($(this).is(':checkbox')) {
+                        currentFormData[inputName] = $(this).prop('checked'); 
+                    } else {
+                        currentFormData[inputName] = $(this).val();
+                    }
+                });
+
+                var hasChanges = false;
+
+                for (var inputName in initialFormData) {
+                    if (initialFormData[inputName] !== currentFormData[inputName]) {
+                        hasChanges = true;
+                        break; 
+                    }
+                }
+
+                $('.save-button').prop('disabled', !hasChanges); 
+            });
+
+            $('.save-button').prop('disabled', true); 
+        });
+    </script>
+}
