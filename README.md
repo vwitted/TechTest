@@ -3,18 +3,25 @@
 The exercise is an ASP.NET Core web application backed by Entity Framework Core, which faciliates management of some fictional users.
 We recommend that you use [Visual Studio (Community Edition)](https://visualstudio.microsoft.com/downloads) or [Visual Studio Code](https://code.visualstudio.com/Download) to run and modify the application. 
 
-**The application uses an in-memory database, so changes will not be persisted between executions.**
 
 # Packages
 
-Additional NuGet Packages:
-- X.PagedList
+ - There are additional packages installed via NuGet:
+ In UserManagement.Data, the following dependencies have been added, as part of migrating the system to a SQL Database. 
+"Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="7.0.18"
+"Microsoft.EntityFrameworkCore" Version="7.0.18" 
+"Microsoft.EntityFrameworkCore.Abstractions" Version="7.0.18"
+"Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.18"
+"Microsoft.EntityFrameworkCore.Tools" Version="7.0.18"
+"Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0"
 
-## The Exercise
-Complete as many of the tasks below as you can. These are split into 3 levels of difficulty 
-* **Standard** - Functionality that is common when working as a web developer
-* **Advanced** - Slightly more technical tasks and problem solving
-* **Expert** - Tasks with a higher level of problem solving and architecture needed
+In UserManagement.Web:
+"X.PagedList.Mvc.Core" Version="9.1.2"
+
+# Database Changes
+As Part of the changes I've made to the system, I have migrated Entity Framework over to a Sql Database in order to add
+long-term persistence to the data. The Connection String may will need to be configured to a database locally and EF used to migrate initially. 
+
 
 ### 1. Filters Section (Standard)
 
@@ -46,13 +53,7 @@ Extend the system to capture log information regarding primary actions performed
 
 ### 5. Extend the Application (Expert)
 
-Make a significant architectural change that improves the application.
-Structurally, the user management application is very simple, and there are many ways it can be made more maintainable, scalable or testable.
-Some ideas are:
-* Re-implement the UI using a client side framework connecting to an API. Use of Blazor is preferred, but if you are more familiar with other frameworks, feel free to use them.
-* Update the data access layer to support asynchronous operations.
-* Implement authentication and login based on the users being stored.
-* Implement bundling of static assets.
+
 * Update the data access layer to use a real database, and implement database schema migrations.
 
 ## Additional Notes
