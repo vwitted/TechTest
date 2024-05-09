@@ -7,7 +7,8 @@ We recommend that you use [Visual Studio (Community Edition)](https://visualstud
 # Packages
 
  - There are additional packages installed via NuGet:
- In UserManagement.Data, the following dependencies have been added, as part of migrating the system to a SQL Database. 
+ In UserManagement.Data, the following dependencies have been added, as part of migrating the system to a SQL Database.
+ 
 "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="7.0.18"
 "Microsoft.EntityFrameworkCore" Version="7.0.18" 
 "Microsoft.EntityFrameworkCore.Abstractions" Version="7.0.18"
@@ -15,13 +16,14 @@ We recommend that you use [Visual Studio (Community Edition)](https://visualstud
 "Microsoft.EntityFrameworkCore.Tools" Version="7.0.18"
 "Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0"
 
-In UserManagement.Web:
+UserManagement.Web: 
 "X.PagedList.Mvc.Core" Version="9.1.2"
 
-# Database Changes
+### Database Changes
 As Part of the changes I've made to the system, I have migrated Entity Framework over to a Sql Database in order to add
 long-term persistence to the data. The Connection String may will need to be configured to a database locally and EF used to migrate initially. 
 
+-----
 
 ### 1. Filters Section (Standard)
 
